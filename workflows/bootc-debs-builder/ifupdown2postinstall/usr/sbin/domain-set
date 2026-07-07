@@ -1,0 +1,44 @@
+#!/bin/bash
+set -euo pipefail
+
+IP=$(ip -4 addr show scope global | grep -oP "(?<=inet )[\d.]+" | head -1 || true)
+
+if [[ -z "$IP" ]]; then
+  exit 0
+fi
+
+HOST=$(hostname -s)
+FQDN=$(echo $(dhcpcd -U | grep '^domain_name=' | cut -d= -f2 | tr -d "'") | cut -d ' ' -f 1)
+HOSTS=$(cat /etc/hosts 2> /dev/null || true)
+
+[[ "${FQDN}" == "" ]] \
+  && FQDN="local"
+
+setdomaine() {
+  cp /etc/hosts.tpl /etc/hosts
+
+  sed -i \
+    -e "s|{{ IP }}|${IP}|g" \
+    -e "s|{{ HOST }}|${HOST}|g" \
+    -e "s|{{ FQDN }}|${FQDN}|g" \
+    /etc/hosts
+}
+
+resetdomaine() {
+  sed -i "/${HOST}/d" /etc/hosts
+  sed -i "/${IP}/d" /etc/hosts
+  echo "${IP}    ${HOSTS}.${FQDN} ${HOST}" >> /etc/hosts
+}
+
+if [[
+  ! -f "/etc/hosts"
+  || "${HOSTS}" == ""
+  ||  "$(echo ${HOSTS} | wc -l)" == "1"
+]]; then
+  setdomaine || true
+else
+  resetdomaine || true
+fi
+
+cp /etc/issue.tpl /etc/issue
+sed -i "s|{{ IP }}|${IP}|g" /etc/issue
