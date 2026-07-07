@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a new feature or enhancement for DaemonCores-VE
+description: Suggest a new feature or enhancement for DaemonCores-VE-Mesh-Edition
 labels: ["enhancement", "triage"]
 body:
   - type: textarea

@@ -1,10 +1,10 @@
-# Contributing to DaemonCores-VE
+# Contributing to DaemonCores-VE-Mesh-Edition
 
 Thank you for your interest in contributing! This document outlines the process for reporting bugs, proposing features, and submitting changes.
 
 ## Reporting Bugs
 
-If you encounter a bug, please open a [Bug Report](https://github.com/DaemonCores/DaemonCores-VE/issues/new?template=bug_report.yml) and fill out the form completely. Include:
+If you encounter a bug, please open a [Bug Report](https://github.com/DaemonCores/DaemonCores-VE-Mesh-Edition/issues/new?template=bug_report.yml) and fill out the form completely. Include:
 
 - The exact version of the image you are running.
 - The Proxmox VE host version and deployment type (online ISO, offline ISO, or direct container).
@@ -13,7 +13,7 @@ If you encounter a bug, please open a [Bug Report](https://github.com/DaemonCore
 
 ## Proposing Features
 
-Feature requests are tracked as GitHub issues. To propose a new feature or enhancement, open a [Feature Request](https://github.com/DaemonCores/DaemonCores-VE/issues/new?template=feature_request.yml) and describe:
+Feature requests are tracked as GitHub issues. To propose a new feature or enhancement, open a [Feature Request](https://github.com/DaemonCores/DaemonCores-VE-Mesh-Edition/issues/new?template=feature_request.yml) and describe:
 
 - The problem you are trying to solve.
 - The solution you would like to see.
@@ -21,7 +21,7 @@ Feature requests are tracked as GitHub issues. To propose a new feature or enhan
 
 ## Development Environment
 
-DaemonCores-VE is built as a `bootc`/`ostree` image. The main artifact is the `Containerfile`.
+DaemonCores-VE-Mesh-Edition is built as a `bootc`/`ostree` image. The main artifact is the `Containerfile`.
 
 ### Prerequisites
 
@@ -32,7 +32,7 @@ DaemonCores-VE is built as a `bootc`/`ostree` image. The main artifact is the `C
 ### Local Build
 
 ```bash
-podman build -t daemoncores-ve:latest -f Containerfile .
+podman build -t daemoncores-ve-mesh-edition:latest -f Containerfile .
 ```
 
 ### Lint
